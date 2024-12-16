@@ -4,6 +4,7 @@ import scipy.io.wavfile as wavfile
 import scipy.signal as signal
 import matplotlib.pyplot as plt
 
+
 def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     """
     Implement Active Noise Cancellation using the LMS (Least Mean Squares) algorithm
@@ -73,13 +74,11 @@ def analyze_noise_characteristics(audio_data, rate):
     
     if mean_amplitude < 0.1:
         noise_profile['recommendations'].append("Low signal level detected. Amplification may be needed.")
-    
     return noise_profile
 
 def plot_signals(original, cleaned, error):
     """
     Plot original, cleaned, and error signals
-    
     Parameters:
     - original: Original noisy audio signal
     - cleaned: Noise-reduced audio signal
