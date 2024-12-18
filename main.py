@@ -102,8 +102,7 @@ def plot_signals(original, cleaned, error):
     
     plt.tight_layout()
     plt.show()
-
-
+    
 def process_audio_noise_cancellation(input_file, output_file=None, plot=True):
     """
     Process audio file for noise cancellation
