@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     """
     Implement Active Noise Cancellation using the LMS (Least Mean Squares) algorithm
+
     
     Parameters:
     - noise_signal: The noisy audio signal to be cleaned
@@ -19,6 +20,7 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     """
     noise_signal = np.array(noise_signal, dtype=float)
     reference_signal = np.array(reference_signal, dtype=float)
+
     
     # Ensure reference signal is long enough for the filter length
     filter_length = min(50, len(noise_signal) // 2)
@@ -30,6 +32,7 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     for n in range(filter_length, len(noise_signal)):
         # Extract reference signal window
         x = reference_signal[n-filter_length:n]
+
         
         # Ensure that the window and weights have compatible shapes
         if x.shape[0] != weights.shape[0]:
@@ -39,6 +42,7 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
         error_signal[n] = noise_signal[n] - estimated_noise
         weights += 2 * mu * error_signal[n] * x
         cleaned_signal[n] = noise_signal[n] - estimated_noise
+
     
     return cleaned_signal, error_signal
 
@@ -123,6 +127,7 @@ def process_audio_noise_cancellation(input_file, output_file=None, plot=True):
     if len(data.shape) == 2:
         cleaned_channels = []
         error_channels = []
+
         
         for channel in range(data.shape[1]):
             reference_noise = data[:len(data)//4, channel]
