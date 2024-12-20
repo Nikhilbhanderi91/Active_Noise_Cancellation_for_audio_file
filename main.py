@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     """
     Implement Active Noise Cancellation using the LMS (Least Mean Squares) algorithm
-
-    
     Parameters:
     - noise_signal: The noisy audio signal to be cleaned
     - reference_signal: A reference noise signal used to adaptively filter
