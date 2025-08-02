@@ -31,6 +31,8 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
         # Extract reference signal window
         x = reference_signal[n-filter_length:n]
 
+
+
         
         # Ensure that the window and weights have compatible shapes
         if x.shape[0] != weights.shape[0]:
@@ -58,6 +60,8 @@ def analyze_noise_characteristics(audio_data, rate):
     duration = len(audio_data) / rate
     mean_amplitude = np.mean(np.abs(audio_data))
     peak_amplitude = np.max(np.abs(audio_data))
+    
+    
     
     frequencies, power_spectrum = signal.periodogram(audio_data, rate)
     dominant_freq = frequencies[np.argmax(power_spectrum)]
