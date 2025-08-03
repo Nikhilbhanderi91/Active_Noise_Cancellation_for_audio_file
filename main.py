@@ -16,10 +16,10 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     - cleaned_signal: Noise-reduced audio signal
     - error_signal: Difference between input and estimated noise
     """
+    
     noise_signal = np.array(noise_signal, dtype=float)
     reference_signal = np.array(reference_signal, dtype=float)
 
-    
     # Ensure reference signal is long enough for the filter length
     filter_length = min(50, len(noise_signal) // 2)
     weights = np.zeros(filter_length)
@@ -28,21 +28,18 @@ def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     error_signal = np.zeros_like(noise_signal, dtype=float)
     
     for n in range(filter_length, len(noise_signal)):
+        
         # Extract reference signal window
         x = reference_signal[n-filter_length:n]
-
-
-
         
         # Ensure that the window and weights have compatible shapes
         if x.shape[0] != weights.shape[0]:
             x = np.resize(x, weights.shape)
-        
+    
         estimated_noise = np.dot(x, weights)
         error_signal[n] = noise_signal[n] - estimated_noise
         weights += 2 * mu * error_signal[n] * x
         cleaned_signal[n] = noise_signal[n] - estimated_noise
-
     
     return cleaned_signal, error_signal
 
@@ -60,7 +57,6 @@ def analyze_noise_characteristics(audio_data, rate):
     duration = len(audio_data) / rate
     mean_amplitude = np.mean(np.abs(audio_data))
     peak_amplitude = np.max(np.abs(audio_data))
-    
     
     
     frequencies, power_spectrum = signal.periodogram(audio_data, rate)
