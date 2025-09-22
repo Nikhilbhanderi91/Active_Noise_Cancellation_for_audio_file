@@ -4,6 +4,7 @@ import scipy.io.wavfile as wavfile
 import scipy.signal as signal
 import matplotlib.pyplot as plt
 
+
 def active_noise_cancellation(noise_signal, reference_signal, mu=0.01):
     """
     Implement Active Noise Cancellation using the LMS (Least Mean Squares) algorithm
